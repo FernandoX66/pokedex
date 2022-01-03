@@ -72,13 +72,20 @@ export class PokemonComponent {
       name: this.pokemon.name,
       url: `https://pokeapi.co/api/v2/pokemon/${this.pokemon.id}/`,
     };
+    const formattedName =
+      pokemonBasicToAdd.name.charAt(0).toUpperCase() +
+      pokemonBasicToAdd.name.slice(1, pokemonBasicToAdd.name.length);
 
     const addedSuccessfully =
       this._pokemonFavoritesService.addFavoritePokemon(pokemonBasicToAdd);
 
     if (addedSuccessfully) {
       this._snackbar.openFromComponent(CustomSnackbarComponent, {
-        data: { name: pokemonBasicToAdd.name, type: 'success' },
+        data: {
+          text: `${formattedName} was successfully added to your favorites`,
+          title: 'Success',
+          type: 'success',
+        },
         verticalPosition: 'bottom',
         horizontalPosition: 'right',
         panelClass: 'success-snackbar',
@@ -86,7 +93,11 @@ export class PokemonComponent {
       });
     } else {
       this._snackbar.openFromComponent(CustomSnackbarComponent, {
-        data: { name: pokemonBasicToAdd.name, type: 'error' },
+        data: {
+          text: `You already have ${formattedName} in your favorites`,
+          title: 'Error',
+          type: 'error',
+        },
         verticalPosition: 'bottom',
         horizontalPosition: 'right',
         panelClass: 'error-snackbar',
@@ -97,7 +108,24 @@ export class PokemonComponent {
 
   removeFavoritePokemon(): void {
     const pokemonToRemove = this.pokemon.name;
+    const formattedName =
+      pokemonToRemove.charAt(0).toUpperCase() +
+      pokemonToRemove.slice(1, pokemonToRemove.length);
 
-    this._pokemonFavoritesService.removeFavoritePokemon(pokemonToRemove);
+    this._pokemonFavoritesService
+      .removeFavoritePokemon(pokemonToRemove)
+      .subscribe(() => {
+        this._snackbar.openFromComponent(CustomSnackbarComponent, {
+          data: {
+            text: `${formattedName} was successfully removed from your favorites`,
+            title: 'Success',
+            type: 'success',
+          },
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+          panelClass: 'success-snackbar',
+          duration: 3000,
+        });
+      });
   }
 }

@@ -11,9 +11,11 @@ body {
 }
 
 .success-snackbar {
-  background-color: rgb(71, 163, 48);
+  background-color: #ffffff;
+  border-left: 5px solid rgb(71, 163, 48);
 }
 
 .error-snackbar {
-  background-color: rgb(173, 46, 29);
+  background-color: #ffffff;
+  border-left: 5px solid rgb(173, 46, 29);
 }

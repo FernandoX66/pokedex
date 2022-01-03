@@ -1,4 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { PokemonBasic } from '../interfaces/pokemons.interface';
 
@@ -38,7 +39,7 @@ export class PokemonFavoritesService {
     return false;
   }
 
-  removeFavoritePokemon(pokemonToRemove: string): void {
+  removeFavoritePokemon(pokemonToRemove: string): Observable<null> {
     for (let pokemon of this._pokemonsList) {
       if (pokemon.name === pokemonToRemove) {
         const indexToRemove = this._pokemonsList.indexOf(pokemon);
@@ -47,6 +48,7 @@ export class PokemonFavoritesService {
         this._localStorageService.saveFavorites(this._pokemonsList);
       }
     }
+    return of(null);
   }
 
   get pokemonsList(): PokemonBasic[] {

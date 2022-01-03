@@ -3,20 +3,30 @@
     *ngIf="data.type === 'success'"
     class="custom-snachbar__information custom-snackbar__information--success"
   >
-    <mat-icon>check_circle</mat-icon>
-    <p>
-      <span class="custom-snackbar__name">{{ data.name }}</span> was added to
-      your favorites.
-    </p>
+    <div class="custom-snackbar__header">
+      <mat-icon [ngStyle]="{ color: 'rgb(71, 163, 48)' }"
+        >check_circle</mat-icon
+      >
+      <p>
+        {{ data.title }}
+      </p>
+    </div>
+    <div class="custom-snackbar__body">
+      <p>{{ data.text }}</p>
+    </div>
   </div>
   <div
     *ngIf="data.type === 'error'"
     class="custom-snachbar__information custom-snackbar__information--error"
   >
-    <mat-icon>cancel</mat-icon>
-    <p>
-      <span class="custom-snackbar__name">{{ data.name }}</span> is already in
-      your favorites.
-    </p>
+    <div class="custom-snackbar__header">
+      <mat-icon [ngStyle]="{ color: 'rgb(173, 46, 29)' }">cancel</mat-icon>
+      <p>
+        {{ data.title }}
+      </p>
+    </div>
+    <div class="custom-snackbar__body">
+      <p>{{ data.text }}</p>
+    </div>
   </div>
 </div>
