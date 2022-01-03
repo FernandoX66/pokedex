@@ -1,0 +1,27 @@
+<div class="pokemon">
+  <div class="pokemon__header">
+    <p class="pokemon__id">N.°{{ pokemonIndex + pokemon.id }}</p>
+    <mat-icon
+      *ngIf="currentTab === 'All'"
+      color="accent"
+      matTooltip="Add to favorites"
+      class="pokemon__favorite-icon"
+      (click)="addFavoritePokemon()"
+      >bookmark_add</mat-icon
+    >
+    <mat-icon
+      *ngIf="currentTab === 'Favorites'"
+      color="accent"
+      matTooltip="Remove from favorites"
+      class="pokemon__favorite-icon"
+      (click)="removeFavoritePokemon()"
+      >bookmark_remove</mat-icon
+    >
+  </div>
+  <div class="pokemon__image">
+    <div class="pokemon__circle"></div>
+    <img [src]="pokemon.sprites.front_default" />
+  </div>
+  <h2 class="pokemon__name">{{ pokemon.name | titlecase }}</h2>
+  <app-pokemon-types [types]="pokemon.types"></app-pokemon-types>
+</div>

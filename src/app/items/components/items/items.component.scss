@@ -1,0 +1,21 @@
+.items {
+  margin: 25px auto;
+  max-width: 1200px;
+
+  .items__progress-spinner {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .items__list {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+
+    .items__item {
+      margin-bottom: 20px;
+    }
+  }
+}

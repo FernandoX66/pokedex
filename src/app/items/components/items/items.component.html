@@ -1,0 +1,27 @@
+<div class="items">
+  <h1 @slideDown>Items</h1>
+  <mat-divider></mat-divider>
+
+  <div class="items__progress-spinner" *ngIf="isLoadingItems">
+    <mat-progress-spinner
+      color="accent"
+      mode="indeterminate"
+      diameter="100"
+      strokeWidth="13"
+    ></mat-progress-spinner>
+  </div>
+  <div class="items__list" *ngIf="!isLoadingItems">
+    <app-item
+      @grow
+      @fadeIn
+      class="items__item"
+      *ngFor="let item of items.results"
+      [itemBasic]="item"
+    ></app-item>
+  </div>
+  <app-nav-buttons
+    [previousURL]="items.previous"
+    [nextURL]="items.next"
+    (onChangePage)="loadItems($event)"
+  ></app-nav-buttons>
+</div>

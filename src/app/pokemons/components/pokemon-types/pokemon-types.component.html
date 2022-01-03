@@ -1,0 +1,30 @@
+<div class="pokemon-types">
+  <div *ngFor="let type of types" class="pokemon-types__type">
+    <p
+      [ngClass]="{
+        grass: type.type.name === 'grass',
+        normal: type.type.name === 'normal',
+        fighting: type.type.name === 'fighting',
+        flying: type.type.name === 'flying',
+        poison: type.type.name === 'poison',
+        ground: type.type.name === 'ground',
+        rock: type.type.name === 'rock',
+        bug: type.type.name === 'bug',
+        ghost: type.type.name === 'ghost',
+        steel: type.type.name === 'steel',
+        fire: type.type.name === 'fire',
+        water: type.type.name === 'water',
+        electric: type.type.name === 'electric',
+        psychic: type.type.name === 'psychic',
+        ice: type.type.name === 'ice',
+        dragon: type.type.name === 'dragon',
+        dark: type.type.name === 'dark',
+        fairy: type.type.name === 'fairy',
+        unknown: type.type.name === 'unknown',
+        shadow: type.type.name === 'shadow'
+      }"
+    >
+      {{ type.type.name }}
+    </p>
+  </div>
+</div>

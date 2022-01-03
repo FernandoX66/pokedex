@@ -1,0 +1,22 @@
+<div class="custom-snackbar" (click)="closeSnackbar()">
+  <div
+    *ngIf="data.type === 'success'"
+    class="custom-snachbar__information custom-snackbar__information--success"
+  >
+    <mat-icon>check_circle</mat-icon>
+    <p>
+      <span class="custom-snackbar__name">{{ data.name }}</span> was added to
+      your favorites.
+    </p>
+  </div>
+  <div
+    *ngIf="data.type === 'error'"
+    class="custom-snachbar__information custom-snackbar__information--error"
+  >
+    <mat-icon>cancel</mat-icon>
+    <p>
+      <span class="custom-snackbar__name">{{ data.name }}</span> is already in
+      your favorites.
+    </p>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="item">
+  <p class="item__id">N.°{{ itemIndex + item.id }}</p>
+  <div class="item__grid">
+    <div>
+      <div class="item__image">
+        <div class="item__circle"></div>
+        <img [src]="item.sprites.default" />
+      </div>
+    </div>
+    <div>
+      <h2 class="item__name">{{ item.name | titlecase }}</h2>
+      <div class="item__cost">
+        <img src="../../../../assets/img/Coin Logo.png" />
+        <p>{{ item.cost }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="nav-buttons">
+  <button
+    (click)="changePage('previous')"
+    *ngIf="previousURL"
+    mat-raised-button
+    color="accent"
+  >
+    Previous page
+  </button>
+  <button
+    (click)="changePage('next')"
+    *ngIf="nextURL"
+    mat-raised-button
+    color="primary"
+  >
+    Next page
+  </button>
+</div>

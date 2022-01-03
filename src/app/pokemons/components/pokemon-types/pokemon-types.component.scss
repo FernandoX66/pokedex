@@ -1,0 +1,105 @@
+@mixin type-properties($backgroundColor, $color) {
+  background-color: $backgroundColor;
+  color: $color;
+  border-radius: 3px;
+  padding: 1px 3px;
+  font-size: 12px;
+
+  @media (min-width: 480px) {
+    font-size: 13px;
+  }
+}
+
+.pokemon-types {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 5px;
+
+  .pokemon-types__type {
+    p {
+      margin: 0;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .grass {
+      @include type-properties(#308f23, #ffffff);
+    }
+
+    .normal {
+      @include type-properties(#666666, #ffffff);
+    }
+
+    .fighting {
+      @include type-properties(#a82323, #ffffff);
+    }
+
+    .flying {
+      @include type-properties(#ba95f6, #ffffff);
+    }
+
+    .poison {
+      @include type-properties(#9d39bb, #ffffff);
+    }
+
+    .ground {
+      @include type-properties(#ebc36f, #ffffff);
+    }
+
+    .rock {
+      @include type-properties(#b19e49, #ffffff);
+    }
+
+    .bug {
+      @include type-properties(#90993c, #ffffff);
+    }
+
+    .ghost {
+      @include type-properties(#4f2d75, #ffffff);
+    }
+
+    .steel {
+      @include type-properties(#b3bae4, #ffffff);
+    }
+
+    .fire {
+      @include type-properties(#c87647, #ffffff);
+    }
+
+    .water {
+      @include type-properties(#3b6ad8, #ffffff);
+    }
+
+    .electric {
+      @include type-properties(#e6cb34, #ffffff);
+    }
+
+    .psychic {
+      @include type-properties(#e24890, #ffffff);
+    }
+
+    .ice {
+      @include type-properties(#67d8ec, #ffffff);
+    }
+
+    .dragon {
+      @include type-properties(#6843e0, #ffffff);
+    }
+
+    .dark {
+      @include type-properties(#493328, #ffffff);
+    }
+
+    .fairy {
+      @include type-properties(#e49ad7, #ffffff);
+    }
+
+    .unknown {
+      @include type-properties(#f5f5f5, #000000);
+    }
+
+    .shadow {
+      @include type-properties(#333333, #ffffff);
+    }
+  }
+}

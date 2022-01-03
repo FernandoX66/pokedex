@@ -1,0 +1,56 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$primary-color: (
+  200: #f3ca4e,
+  500: #d5a100,
+  700: #947109,
+  contrast: (
+    200: #000000,
+    500: #000000,
+    700: #ffffff,
+  ),
+);
+
+$accent-color: (
+  200: #27a5f3,
+  500: #0075be,
+  700: #055586,
+  contrast: (
+    200: #000000,
+    500: #ffffff,
+    700: #ffffff,
+  ),
+);
+
+$warn-color: (
+  200: #ff6434,
+  500: #dd2c00,
+  700: #a30000,
+  contrast: (
+    200: #000000,
+    500: #ffffff,
+    700: #ffffff,
+  ),
+);
+
+$primary-palette: mat-palette($primary-color);
+$accent-palette: mat-palette($accent-color);
+$warn-palette: mat-palette($warn-color);
+$typography: mat-typography-config(
+  $font-family: '"Poppins", "Helvetica Neue", sans-serif',
+);
+
+$theme: mat-light-theme(
+  (
+    color: (
+      primary: $primary-palette,
+      accent: $accent-palette,
+      warn: $warn-palette,
+    ),
+  )
+);
+
+@include angular-material-theme($theme);
+@include angular-material-typography($typography);

@@ -1,0 +1,14 @@
+$shadowColor: #816700;
+
+.toolbar {
+  .toolbar__image {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+
+    img {
+      width: 140px;
+    }
+  }
+}

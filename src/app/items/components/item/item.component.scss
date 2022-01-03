@@ -1,0 +1,61 @@
+.item {
+  background-color: #9097afef;
+  border-radius: 7px;
+  box-shadow: 0 10px 10px #cfab1a;
+  padding: 15px;
+
+  p {
+    margin: 0;
+  }
+
+  .item__id {
+    background-color: #00000023;
+    color: #ffffff;
+    display: inline-block;
+    padding: 1px 4px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+
+  .item__grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    .item__image {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .item__circle {
+        background-color: #ffffff86;
+        height: 55px;
+        width: 55px;
+        border-radius: 50%;
+      }
+
+      img {
+        width: 70px;
+        margin-top: -62px;
+      }
+    }
+
+    .item__name {
+      color: #080808;
+      margin: 0;
+    }
+
+    .item__cost {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      img {
+        width: 25px;
+      }
+    }
+  }
+}
+
+.item:hover {
+  transform: scale(1.05);
+}

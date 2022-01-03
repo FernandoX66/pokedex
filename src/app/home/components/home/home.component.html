@@ -1,0 +1,26 @@
+<div class="home">
+  <app-toolbar (onMenuButtonClicked)="sidenav.toggle()"></app-toolbar>
+  <mat-sidenav-container class="home__sidenav-container" fullscreen>
+    <mat-sidenav
+      class="sidenav-container__sidenav"
+      #sidenav
+      [opened]="isLargeScreen()"
+      [mode]="isLargeScreen() ? 'side' : 'over'"
+    >
+      <img src="../../../../assets/img/Pikachu.png" />
+      <mat-nav-list>
+        <a mat-list-item routerLink="pokemons">
+          <mat-icon mat-list-icon color="primary">catching_pokemon</mat-icon
+          >Pokémons</a
+        >
+        <a mat-list-item routerLink="items">
+          <mat-icon mat-list-icon color="primary">business_center</mat-icon
+          >Items</a
+        >
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-container__sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

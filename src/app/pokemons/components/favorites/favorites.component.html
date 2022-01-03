@@ -1,0 +1,12 @@
+<div class="favorites">
+  <div class="favorites__list">
+    <app-pokemon
+      @fadeIn
+      @grow
+      class="favorites__pokemon"
+      *ngFor="let pokemon of pokemonsList"
+      [pokemonBasic]="pokemon"
+      [currentTab]="currentTab"
+    ></app-pokemon>
+  </div>
+</div>
