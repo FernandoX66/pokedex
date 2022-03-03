@@ -49,3 +49,21 @@ body {
     transform: translate(-50%, 0);
   }
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dfebf1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #055586;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #04446b;
+}
