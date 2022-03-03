@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs';
 import { fadeIn, grow, slideDown } from 'src/app/shared/animations/animations';
-import { MatTabChangeEvent } from '../../interfaces/mat-tab-change-event.interface';
-import { PokemonBasic, Pokemons } from '../../interfaces/pokemons.interface';
+import { Pokemons } from '../../interfaces/pokemons.interface';
 import { PokemonRequestsService } from '../../services/pokemon-requests.service';
 
 @Component({
@@ -29,12 +29,9 @@ export class PokemonsComponent implements OnInit {
   loadPokemons(url?: string): void {
     this.isLoadingPokemons = true;
 
-    this._pokemonRequestsService.getPokemons(url).subscribe(
-      (pokemons: Pokemons) => {
-        this.pokemons = pokemons;
-      },
-      (error) => console.log(error),
-      () => (this.isLoadingPokemons = false)
-    );
+    this._pokemonRequestsService
+      .getPokemons(url)
+      .pipe(finalize(() => (this.isLoadingPokemons = false)))
+      .subscribe((pokemons: Pokemons) => (this.pokemons = pokemons));
   }
 }

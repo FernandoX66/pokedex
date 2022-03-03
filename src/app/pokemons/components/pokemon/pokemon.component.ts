@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { CustomSnackbarComponent } from 'src/app/shared/components/custom-snackbar/custom-snackbar.component';
 import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PokemonBasic } from '../../interfaces/pokemons.interface';
@@ -16,8 +18,8 @@ export class PokemonComponent {
   @Input() set pokemonBasic(pokemonBasic: PokemonBasic) {
     this._pokemonRequestsService
       .getPokemon(pokemonBasic.url)
-      .subscribe((pokemon: Pokemon) => {
-        this.pokemon = pokemon;
+      .pipe(tap((pokemon: Pokemon) => (this.pokemon = pokemon)))
+      .subscribe(() => {
         if (this.pokemon.id < 10) {
           this.pokemonIndex = '00';
         } else if (this.pokemon.id < 100) {
@@ -64,10 +66,12 @@ export class PokemonComponent {
   constructor(
     private _pokemonRequestsService: PokemonRequestsService,
     private _pokemonFavoritesService: PokemonFavoritesService,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private _router: Router
   ) {}
 
-  addFavoritePokemon(): void {
+  addFavoritePokemon(event: MouseEvent): void {
+    event.stopPropagation();
     const pokemonBasicToAdd = {
       name: this.pokemon.name,
       url: `https://pokeapi.co/api/v2/pokemon/${this.pokemon.id}/`,
@@ -106,7 +110,8 @@ export class PokemonComponent {
     }
   }
 
-  removeFavoritePokemon(): void {
+  removeFavoritePokemon(event: MouseEvent): void {
+    event.stopPropagation();
     const pokemonToRemove = this.pokemon.name;
     const formattedName =
       pokemonToRemove.charAt(0).toUpperCase() +
@@ -127,5 +132,9 @@ export class PokemonComponent {
           duration: 3000,
         });
       });
+  }
+
+  showPokemonDetails(): void {
+    this._router.navigate(['home/pokemons', this.pokemon.id]);
   }
 }
