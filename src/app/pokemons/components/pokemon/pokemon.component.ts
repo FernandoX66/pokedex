@@ -7,6 +7,7 @@ import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PokemonBasic } from '../../interfaces/pokemons.interface';
 import { PokemonFavoritesService } from '../../services/pokemon-favorites.service';
 import { PokemonRequestsService } from '../../services/pokemon-requests.service';
+import { getPokemonIndex } from '../../helpers/get-pokemon-index';
 
 @Component({
   selector: 'app-pokemon',
@@ -19,15 +20,9 @@ export class PokemonComponent {
     this._pokemonRequestsService
       .getPokemon(pokemonBasic.url)
       .pipe(tap((pokemon: Pokemon) => (this.pokemon = pokemon)))
-      .subscribe(() => {
-        if (this.pokemon.id < 10) {
-          this.pokemonIndex = '00';
-        } else if (this.pokemon.id < 100) {
-          this.pokemonIndex = '0';
-        } else {
-          this.pokemonIndex = '';
-        }
-      });
+      .subscribe(
+        (pokemon: Pokemon) => (this.pokemonIndex = getPokemonIndex(pokemon.id))
+      );
   }
   pokemon: Pokemon = {
     id: 0,

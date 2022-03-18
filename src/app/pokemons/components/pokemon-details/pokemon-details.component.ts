@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PokemonRequestsService } from '../../services/pokemon-requests.service';
+import { getPokemonIndex } from '../../helpers/get-pokemon-index';
+import { pokemonAttributes } from '../../interfaces/pokemon-attributes.interface';
+import { pokemonAttributesKeys } from '../../interfaces/pokemon-attributes.interface';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -42,6 +45,12 @@ export class PokemonDetailsComponent implements OnInit {
     stats: [],
     types: [],
   };
+  pokemonIndex: string = '';
+  pokemonAttributes: pokemonAttributes = {
+    hp: 0,
+    attack: 0,
+    defense: 0,
+  };
 
   constructor(
     private pokemonRequestsService: PokemonRequestsService,
@@ -55,8 +64,20 @@ export class PokemonDetailsComponent implements OnInit {
           this.pokemonRequestsService.getPokemon(
             `https://pokeapi.co/api/v2/pokemon/${paramMap.get('id')}`
           )
-        )
+        ),
+        tap((pokemon: Pokemon) => (this.pokemon = pokemon))
       )
-      .subscribe((pokemon: Pokemon) => (this.pokemon = pokemon));
+      .subscribe((pokemon: Pokemon) => {
+        this.pokemonIndex = getPokemonIndex(pokemon.id);
+
+        for (let attr in this.pokemonAttributes) {
+          for (let stat of pokemon.stats) {
+            if (attr === stat.stat.name) {
+              this.pokemonAttributes[attr as pokemonAttributesKeys] =
+                stat.base_stat;
+            }
+          }
+        }
+      });
   }
 }

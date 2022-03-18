@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { ProgressBarModule } from '../theme/progress-bar/progress-bar.module';
 
 @NgModule({
   declarations: [HomeComponent, ToolbarComponent],
@@ -22,6 +23,7 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    ProgressBarModule,
   ],
   exports: [HomeComponent],
 })

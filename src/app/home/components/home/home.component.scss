@@ -9,6 +9,11 @@
     .sidenav-container__sidenav {
       background-color: #055586;
       box-shadow: 0 0 20px #362c03;
+      width: 100%;
+
+      @media (min-width: 480px) {
+        width: unset;
+      }
 
       a {
         text-decoration: none;

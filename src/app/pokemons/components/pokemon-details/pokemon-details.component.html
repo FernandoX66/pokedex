@@ -1,3 +1,60 @@
-<div>
-  <p>{{ pokemon.name }}</p>
+<div class="pokemon-details">
+  <div class="pokemon-details__img">
+    <img [src]="pokemon.sprites.front_default" />
+  </div>
+  <div class="pokemon-details__name">
+    <span>{{ pokemonIndex }}</span>
+    <h2>{{ pokemon.name }}</h2>
+    <app-pokemon-types [types]="pokemon.types"></app-pokemon-types>
+  </div>
+  <div class="pokemon-details__attributes">
+    <div class="divs-column">
+      <app-stat-card
+        statCardTitle="Base Stats"
+        statCardIcon="assets/icons/stats.svg"
+        [rotate]="90"
+      >
+        <div class="pokemon-details__stats">
+          <div class="pokemon-details__stat">
+            <p *ngIf="pokemonAttributes.hp">
+              <strong>HP:</strong> {{ pokemonAttributes.hp }}
+            </p>
+            <app-progress-bar
+              [progressPercentage]="(pokemonAttributes.hp * 100) / 200"
+            ></app-progress-bar>
+          </div>
+          <div class="pokemon-details__stat">
+            <p *ngIf="pokemonAttributes.attack">
+              <strong>ATK:</strong> {{ pokemonAttributes.attack }}
+            </p>
+            <app-progress-bar
+              [progressPercentage]="(pokemonAttributes.attack * 100) / 200"
+            ></app-progress-bar>
+          </div>
+          <div class="pokemon-details__stat">
+            <p *ngIf="pokemonAttributes.defense">
+              <strong>DEF:</strong> {{ pokemonAttributes.defense }}
+            </p>
+            <app-progress-bar
+              [progressPercentage]="(pokemonAttributes.defense * 100) / 200"
+            ></app-progress-bar>
+          </div>
+        </div>
+      </app-stat-card>
+    </div>
+    <div class="divs-column">
+      <app-stat-card
+        statCardTitle="Availability"
+        statCardIcon="assets/icons/cassete.svg"
+      >
+        <p>
+          {{
+            "This pokémon is available in " +
+              pokemon.game_indices.length +
+              (pokemon.game_indices.length === 1 ? " game." : " games.")
+          }}
+        </p>
+      </app-stat-card>
+    </div>
+  </div>
 </div>

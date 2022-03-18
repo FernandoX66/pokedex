@@ -1,0 +1,10 @@
+<div class="stat-card">
+  <div class="stat-card__title">
+    <img [style.transform]="'rotate(' + rotate + 'deg)'" [src]="statCardIcon" />
+    <p>{{ statCardTitle }}</p>
+  </div>
+  <hr />
+  <div class="stat-card__body">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -16,6 +16,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
 import { TooltipModule } from '../theme/tooltip/tooltip.module';
+import { ProgressBarModule } from '../theme/progress-bar/progress-bar.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TooltipModule } from '../theme/tooltip/tooltip.module';
     MatSnackBarModule,
     SharedModule,
     TooltipModule,
+    ProgressBarModule,
   ],
 })
 export class PokemonsModule {}
