@@ -1,9 +1,9 @@
 .nav-buttons {
-  display: flex;
-  justify-content: center;
   @media (min-width: 480px) {
+    display: flex;
     justify-content: flex-end;
   }
+
   gap: 15px;
   margin: 20px 25px;
 
@@ -18,9 +18,23 @@
     cursor: pointer;
     box-shadow: 0 5px 10px 2px #0000002b;
     transition-duration: 0.3s;
+    width: 100%;
+    display: block;
+
+    @media (min-width: 480px) {
+      width: unset;
+    }
 
     &:active {
       transform: scale(0.96, 0.96);
+    }
+
+    &:last-of-type {
+      margin-top: 10px;
+
+      @media (min-width: 480px) {
+        margin-top: 0;
+      }
     }
   }
 

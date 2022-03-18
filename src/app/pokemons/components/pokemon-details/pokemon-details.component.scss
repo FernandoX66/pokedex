@@ -13,8 +13,12 @@
 
     button {
       position: absolute;
-      top: 20px;
+      top: 10px;
       left: 0;
+
+      @media (min-width: 480px) {
+        top: 20px;
+      }
     }
   }
 
