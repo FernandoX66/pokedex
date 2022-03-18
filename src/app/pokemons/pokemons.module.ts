@@ -17,27 +17,33 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
 import { TooltipModule } from '../theme/tooltip/tooltip.module';
 import { ProgressBarModule } from '../theme/progress-bar/progress-bar.module';
+import { MatButtonModule } from '@angular/material/button';
+
+const declarations = [
+  PokemonsComponent,
+  PokemonComponent,
+  PokemonTypesComponent,
+  FavoritesComponent,
+  PokemonDetailsComponent,
+];
+
+const imports = [
+  CommonModule,
+  PokemonsRoutingModule,
+  MatDividerModule,
+  MatProgressSpinnerModule,
+  MatIconModule,
+  MatTabsModule,
+  MatSnackBarModule,
+  SharedModule,
+  TooltipModule,
+  ProgressBarModule,
+  MatButtonModule,
+];
 
 @NgModule({
-  declarations: [
-    PokemonsComponent,
-    PokemonComponent,
-    PokemonTypesComponent,
-    FavoritesComponent,
-    PokemonDetailsComponent,
-  ],
+  declarations: [...declarations],
+  imports: [...imports],
   providers: [PokemonRequestsService],
-  imports: [
-    CommonModule,
-    PokemonsRoutingModule,
-    MatDividerModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
-    MatTabsModule,
-    MatSnackBarModule,
-    SharedModule,
-    TooltipModule,
-    ProgressBarModule,
-  ],
 })
 export class PokemonsModule {}

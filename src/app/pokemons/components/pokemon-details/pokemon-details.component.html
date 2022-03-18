@@ -1,6 +1,9 @@
 <div class="pokemon-details">
   <div class="pokemon-details__img">
     <img [src]="pokemon.sprites.front_default" />
+    <button mat-mini-fab color="accent" routerLink="/home/pokemons">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
   </div>
   <div class="pokemon-details__name">
     <span>{{ pokemonIndex }}</span>

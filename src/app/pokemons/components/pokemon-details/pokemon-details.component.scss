@@ -5,9 +5,16 @@
 
   .pokemon-details__img {
     text-align: center;
+    position: relative;
 
     img {
       width: 280px;
+    }
+
+    button {
+      position: absolute;
+      top: 20px;
+      left: 0;
     }
   }
 
