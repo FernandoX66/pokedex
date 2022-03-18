@@ -1,10 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { CustomSnackbarComponent } from 'src/app/shared/components/custom-snackbar/custom-snackbar.component';
 import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PokemonBasic } from '../../interfaces/pokemons.interface';
 import { PokemonFavoritesService } from '../../services/pokemon-favorites.service';
 import { PokemonRequestsService } from '../../services/pokemon-requests.service';
+import { getPokemonIndex } from '../../helpers/get-pokemon-index';
 
 @Component({
   selector: 'app-pokemon',
@@ -16,16 +19,10 @@ export class PokemonComponent {
   @Input() set pokemonBasic(pokemonBasic: PokemonBasic) {
     this._pokemonRequestsService
       .getPokemon(pokemonBasic.url)
-      .subscribe((pokemon: Pokemon) => {
-        this.pokemon = pokemon;
-        if (this.pokemon.id < 10) {
-          this.pokemonIndex = '00';
-        } else if (this.pokemon.id < 100) {
-          this.pokemonIndex = '0';
-        } else {
-          this.pokemonIndex = '';
-        }
-      });
+      .pipe(tap((pokemon: Pokemon) => (this.pokemon = pokemon)))
+      .subscribe(
+        (pokemon: Pokemon) => (this.pokemonIndex = getPokemonIndex(pokemon.id))
+      );
   }
   pokemon: Pokemon = {
     id: 0,
@@ -64,21 +61,30 @@ export class PokemonComponent {
   constructor(
     private _pokemonRequestsService: PokemonRequestsService,
     private _pokemonFavoritesService: PokemonFavoritesService,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private _router: Router
   ) {}
 
-  addFavoritePokemon(): void {
+  addFavoritePokemon(event: MouseEvent): void {
+    event.stopPropagation();
     const pokemonBasicToAdd = {
       name: this.pokemon.name,
       url: `https://pokeapi.co/api/v2/pokemon/${this.pokemon.id}/`,
     };
+    const formattedName =
+      pokemonBasicToAdd.name.charAt(0).toUpperCase() +
+      pokemonBasicToAdd.name.slice(1, pokemonBasicToAdd.name.length);
 
     const addedSuccessfully =
       this._pokemonFavoritesService.addFavoritePokemon(pokemonBasicToAdd);
 
     if (addedSuccessfully) {
       this._snackbar.openFromComponent(CustomSnackbarComponent, {
-        data: { name: pokemonBasicToAdd.name, type: 'success' },
+        data: {
+          text: `${formattedName} was successfully added to your favorites`,
+          title: 'Success',
+          type: 'success',
+        },
         verticalPosition: 'bottom',
         horizontalPosition: 'right',
         panelClass: 'success-snackbar',
@@ -86,7 +92,11 @@ export class PokemonComponent {
       });
     } else {
       this._snackbar.openFromComponent(CustomSnackbarComponent, {
-        data: { name: pokemonBasicToAdd.name, type: 'error' },
+        data: {
+          text: `You already have ${formattedName} in your favorites`,
+          title: 'Error',
+          type: 'error',
+        },
         verticalPosition: 'bottom',
         horizontalPosition: 'right',
         panelClass: 'error-snackbar',
@@ -95,9 +105,31 @@ export class PokemonComponent {
     }
   }
 
-  removeFavoritePokemon(): void {
+  removeFavoritePokemon(event: MouseEvent): void {
+    event.stopPropagation();
     const pokemonToRemove = this.pokemon.name;
+    const formattedName =
+      pokemonToRemove.charAt(0).toUpperCase() +
+      pokemonToRemove.slice(1, pokemonToRemove.length);
 
-    this._pokemonFavoritesService.removeFavoritePokemon(pokemonToRemove);
+    this._pokemonFavoritesService
+      .removeFavoritePokemon(pokemonToRemove)
+      .subscribe(() => {
+        this._snackbar.openFromComponent(CustomSnackbarComponent, {
+          data: {
+            text: `${formattedName} was successfully removed from your favorites`,
+            title: 'Success',
+            type: 'success',
+          },
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+          panelClass: 'success-snackbar',
+          duration: 3000,
+        });
+      });
+  }
+
+  showPokemonDetails(): void {
+    this._router.navigate(['home/pokemons', this.pokemon.id]);
   }
 }

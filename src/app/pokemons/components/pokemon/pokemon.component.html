@@ -1,20 +1,20 @@
-<div class="pokemon">
+<div class="pokemon" (click)="showPokemonDetails()">
   <div class="pokemon__header">
-    <p class="pokemon__id">N.°{{ pokemonIndex + pokemon.id }}</p>
+    <p class="pokemon__id">N.°{{ pokemonIndex }}</p>
     <mat-icon
       *ngIf="currentTab === 'All'"
       color="accent"
-      matTooltip="Add to favorites"
       class="pokemon__favorite-icon"
-      (click)="addFavoritePokemon()"
+      (click)="addFavoritePokemon($event)"
+      appTooltip="Add to favorites"
       >bookmark_add</mat-icon
     >
     <mat-icon
       *ngIf="currentTab === 'Favorites'"
       color="accent"
-      matTooltip="Remove from favorites"
       class="pokemon__favorite-icon"
-      (click)="removeFavoritePokemon()"
+      (click)="removeFavoritePokemon($event)"
+      appTooltip="Remove from favorites"
       >bookmark_remove</mat-icon
     >
   </div>

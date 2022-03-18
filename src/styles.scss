@@ -11,9 +11,59 @@ body {
 }
 
 .success-snackbar {
-  background-color: rgb(71, 163, 48);
+  background-color: #ffffff;
+  border-left: 5px solid rgb(71, 163, 48);
 }
 
 .error-snackbar {
-  background-color: rgb(173, 46, 29);
+  background-color: #ffffff;
+  border-left: 5px solid rgb(173, 46, 29);
+}
+
+.tooltip-container {
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  padding: 6px 12px;
+  font-size: 0.7rem;
+  line-height: initial;
+  color: white;
+  width: auto;
+  background: #2d3557ee;
+  box-sizing: border-box;
+  border-radius: 3px;
+  opacity: 0;
+  transform: translate(-50%, -30%);
+  animation: tooltip-slide 0.18s ease-out 0.25s;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+@keyframes tooltip-slide {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dfebf1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #055586;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #04446b;
 }

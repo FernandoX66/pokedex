@@ -12,9 +12,11 @@ import { SharedModule } from '../shared/shared.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
+import { TooltipModule } from '../theme/tooltip/tooltip.module';
+import { ProgressBarModule } from '../theme/progress-bar/progress-bar.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     PokemonComponent,
     PokemonTypesComponent,
     FavoritesComponent,
+    PokemonDetailsComponent,
   ],
   providers: [PokemonRequestsService],
   imports: [
@@ -30,10 +33,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDividerModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    MatTooltipModule,
     MatTabsModule,
     MatSnackBarModule,
     SharedModule,
+    TooltipModule,
+    ProgressBarModule,
   ],
 })
 export class PokemonsModule {}

@@ -1,29 +1,28 @@
 .custom-snackbar {
+  background-color: #ffffff;
+
   .custom-snachbar__information {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 5px;
+    .custom-snackbar__header {
+      display: flex;
+      justify-content: flex-start;
+      gap: 5px;
 
-    p {
-      margin: 0;
-      color: #ffffff;
+      p {
+        margin: 0;
+        color: #000000;
+        font-weight: bold;
+      }
+    }
 
-      .custom-snackbar__name {
-        text-transform: capitalize;
+    .custom-snackbar__body {
+      p {
+        margin: 0 0 0 28px;
+        color: #414040;
       }
     }
 
     p:hover {
       cursor: default;
     }
-  }
-
-  .custom-snackbar__information--success {
-    background-color: rgb(71, 163, 48);
-  }
-
-  .custom-snackbar__information--error {
-    background-color: rgb(173, 46, 29);
   }
 }

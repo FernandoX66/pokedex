@@ -11,7 +11,8 @@ import {
 })
 export class CustomSnackbarComponent {
   constructor(
-    @Inject(MAT_SNACK_BAR_DATA) public data: { name: string; type: string },
+    @Inject(MAT_SNACK_BAR_DATA)
+    public data: { text: string; title: string; type: string },
     private snachbarRef: MatSnackBarRef<CustomSnackbarComponent>
   ) {}
 
