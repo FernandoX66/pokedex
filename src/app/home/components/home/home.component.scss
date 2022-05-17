@@ -31,6 +31,17 @@
 
     .sidenav-container__sidenav-content {
       background-color: #ffcc00;
+
+      .page-title-container {
+        text-align: center;
+        margin: 20px auto;
+        max-width: 1100px;
+        width: 95%;
+
+        @media (min-width: 480px) {
+          text-align: unset;
+        }
+      }
     }
   }
 }

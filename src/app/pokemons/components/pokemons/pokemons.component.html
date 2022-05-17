@@ -1,5 +1,12 @@
 <div class="pokemons">
-  <h1 @slideDown>Pokémons</h1>
+  <div class="input-container">
+    <input type="text" placeholder="Search" [formControl]="searchControl" />
+    <img
+      src="/assets/icons/search_icon.svg"
+      alt="search"
+      (click)="searchPokemon()"
+    />
+  </div>
   <mat-tab-group animationDuration="0">
     <mat-tab label="All">
       <ng-template matTabContent>

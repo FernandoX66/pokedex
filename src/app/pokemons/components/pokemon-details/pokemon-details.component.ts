@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PokemonRequestsService } from '../../services/pokemon-requests.service';
 import { getPokemonIndex } from '../../helpers/get-pokemon-index';
@@ -54,11 +54,11 @@ export class PokemonDetailsComponent implements OnInit {
 
   constructor(
     private pokemonRequestsService: PokemonRequestsService,
-    private _route: ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this._route.paramMap
+    this.route.paramMap
       .pipe(
         switchMap((paramMap: ParamMap) =>
           this.pokemonRequestsService.getPokemon(

@@ -18,6 +18,7 @@ import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-de
 import { TooltipModule } from '../theme/tooltip/tooltip.module';
 import { ProgressBarModule } from '../theme/progress-bar/progress-bar.module';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const declarations = [
   PokemonsComponent,
@@ -39,6 +40,7 @@ const imports = [
   TooltipModule,
   ProgressBarModule,
   MatButtonModule,
+  ReactiveFormsModule,
 ];
 
 @NgModule({

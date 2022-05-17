@@ -20,6 +20,9 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-container__sidenav-content">
+      <div class="page-title-container">
+        <h1 @slideDown>{{ pageTitle }}</h1>
+      </div>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
